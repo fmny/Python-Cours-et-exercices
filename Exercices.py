@@ -622,31 +622,57 @@ print(premier2)
 #Erésultat
 #[1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]             
  
-#6.7.10 Recherche d’un nombre par dichotomie (exercice +++)
-
-
-
 
 #Pour vous guider, voici ce que donnerait le programme avec la conversation précédente :
 print(" Pensez à un nombre entre 1 et 100")
 
-print("Est - ce votre nombre est plus grand , plus petit ou égal à 50 ?")
+n=int(100)
+nb=int(100/2) #demi-largeur 
+nb2=int(50)
 
-#a revoir plus tard (ne marche pas)
-n=100
-nb=100/2
-nb2=0
-intervalle=[1,n]
+print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {nb} [+/-/=] ?")
+signe=input()
+
+
+while (signe!="="):
+    if (signe=="+") and (nb<97):
+        nb=int(nb+nb2/2)
+        print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {nb} [+/-/=] ?")
+    elif (signe=="-") and(nb>3): 
+        nb=int(nb-nb2/2)
+        print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {nb} [+/-/=] ?")
+    elif (nb>96):
+        nb=nb+1
+        print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {nb} [+/-/=] ?")
+    elif (nb<4) :
+        nb=nb-1
+        print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {nb} [+/-/=] ?")
+    print(nb)
+    nb2=nb2/2
+    signe=input()
+
+         
+#ne marchait pas pour n=1,2,3 et 98,99,100 (donc elif peu élégants)
+#vérifier les autres valeurs
+#Il y a sûrement plus direct comme méthode
+
+#Attention: ne surtout pas mettre de and dans les instructions après if 
+#(seulement dans la condition if)
+
+#test
+n=int(100)
+nb=int(100/2)
+nb2=int(0)
 print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {n/2} [+/-/=] ?")
 signe=input()
 
+#test
 while (signe!="="):
-    if signe=="+": nb=nb+int((n-nb)/2) \
-        and print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {nb} [+/-/=] ?")     #intervalle=[int(n/2),n]
-    elif signe=="-": nb=nb-int((n-nb)/2) \
-        and print (f"Est-ce votre nombre est plus grand, plus petit ou égal à {nb} [+/-/=] ?")    #intervalle=[1,int(n/2)]
-   
-print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {n/2} [+/-/=] ?")   
+    if (signe=="+"): 
+        signe=input()
+    elif (signe=="-"): 
+        signe=input()
+ 
  ##################################
 
 #7.7 Exercices
