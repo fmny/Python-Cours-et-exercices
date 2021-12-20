@@ -673,7 +673,7 @@ while (signe!="="):
     elif (signe=="-"): 
         signe=input()
  
- ##################################
+  ##################################
 
 #7.7 Exercices
 
@@ -697,13 +697,503 @@ for note in notes:
     notes2=notes2+[note]
     
 notes2
-
-
 moy=sum(notes2)/len(notes2)
 print(f"la moyenne vaut {moy:.2f}")
 
+#7.7.2 Admis ou recalé
+path2="C:/Users/Francis/R_new/Python Scripts/Cours Paris 7/data/"
+
+with open (path2+"notes.txt","r") as filin :
+    lignes = filin.readlines()
+    lignes
+
+notes=[]
+for ligne in lignes :
+    notes=notes+[ligne]
+#print(notes)
+
+notes2=[]
+for note in notes:
+    note=float(note)
+    notes2=notes2+[note]
+    
+print(notes2)        
+
+myFile = open(path2+"notes3.txt", "w+")
+with open (path2+"notes3.txt" , "w") as filout :
+    for note in notes2:
+        if note >=10: filout.write(f"{note} admis\n")
+        else : filout.write(f"{note} recalé\n")
+    
+myFile.close()
+
+#7.7.3 Spirale (exercice +++)
+
+#Créez un script spirale.py qui calcule les coordonnées cartésiennes d’une spirale à 
+#deux dimensions.
+#Les coordonnées cartésiennes xA et yA d’un point A sur un cercle de rayon r 
+#s’expriment en fonction de l’angle θ représenté sur la figure 7.1 comme :
+#xA = cos(θ)×r
+#yA = sin(θ)×r
+#Pour calculer les coordonnées cartésiennes qui décrivent la spirale, 
+#vous allez faire varier deux variables en même temps :
+#— l’angle θ, qui va prendre des valeurs de 0 à 4π radians par pas de 0.1, 
+#ce qui correspond à deux tours complets;
+#— le rayon du cercle r, qui va prendre comme valeur initiale 0.5 puis que vous 
+#allez incrémenter (c’est-à-dire augmenter) par pas de 0.1.
+
+path2="C:/Users/Francis/R_new/Python Scripts/Cours Paris 7/data/"
+import math
+import numpy as np
+rmax=2
+r=0.5
+nb_demi_tour=30
+pas=0.1
+
+with open (path2+"spirale.dat" , "w") as filout :
+    for theta in np.arange(0, nb_demi_tour*math.pi, pas):
+            x_a=math.cos(theta)*r
+            y_a=math.sin(theta)*r
+            r=r+pas
+            filout.write(f"{x_a:5f}  {y_a:5f} \n")
+
+
+import matplotlib.pyplot as plt
+x = []
+y = []
+with open (path2+"spirale.dat","r") as f_in :
+    for line in f_in :
+        coords = line.split()
+        x.append(float(coords [0]))
+        y.append(float(coords [1]))
+
+plt.figure(figsize =(8,8))
+mini = min(x+y)*1.2
+maxi = max(x+y)*1.2
+plt.xlim (mini,maxi)
+plt.ylim (mini,maxi)
+plt.plot(x,y)
+plt.savefig (path2+"spirale.png")
+
+
+#0.50000 0.00000
+#0.59700 0.05990
+#0.68605 0.13907
+
+0.5*math.sin(0.1)
+#0.04991670832341408   (léger écart avec mon fichier spirale.dat: a comprendre)
+
+#8.8 Exercices
+
+#8.8.1 Racine carrée
+
+import math
+
+for i in range(10,21,1):
+    print(f" {i} {math.sqrt(i):.3f}")
+
+#8.8.2 Cosinus
+import math
+math.cos(math.pi/2)
+math.cos(0)  #vérification
+
+#8.8.3 Nom et contenu du répertoire courant
+import os
+
+#Répertoire courant
+os.getcwd()
+'C:\\Users\\Francis\\R_new\\Python Scripts\\Transparence santé'
+
+#changer le répertoire courant
+os.chdir('C:\\Users\\Francis\\R_new\\Python Scripts\\Cours Paris 7')
+#vérification
+os.getcwd()
+
+#Lister le contenu du répertoire courant
+os.listdir()
+#['cours-python.pdf', 'cours.py', 'data', 'Exercices.py']
+
+#8.8.4 Affichage temporisé
+#Affichez les nombres de 1 à 10 avec 1 seconde d’intervalle. 
+
+import time
+for i in range(1,11,1):
+    time.sleep(1)
+    print(i)
+
+#8.8.5 Séquences aléatoires de chiffres
+#Générez une séquence aléatoire de 6 chiffres, ceux-ci étant des entiers 
+#tirés entre 1 et 4
+
+import random
+
+#ne marche pas
+for i in range(4):
+    random.randint(1,4)
+    
+l = [random.randint(1,4) for i in range(4)]
+#[2, 1, 1, 1]
+
+#on peut spécifier un pas
+l = [random.randrange(0,10,2) for i in range(5)]
+#[0, 4, 2, 8, 2]
+
+#8.8.6 Séquences aléatoires d’ADN
+#Générez une séquence aléatoire d’ADN de 10 bases de deux manières 
+#différentes. Utilisez le module random avec la 
+#fonction randint() ou choice().
+
+import random
+
+l=[]
+for i in range(10):
+    k=random.randint(1,4)
+    if (k==1): l=l+['A']
+    elif (k==2): l=l+['C']
+    elif (k==3): l=l+['T']
+    elif (k==4): l=l+['G']
+print(l)
+#['G', 'A', 'G', 'A', 'T', 'G', 'C', 'T', 'A', 'A']
+
+
+#autre méthode
+l1 = [random.randrange(1,4) for i in range(10)]
+l2=[]
+
+for k in l1:
+    if (k==1): l2=l2+['A']
+    elif (k==2): l2=l2+['C']
+    elif (k==3): l2=l2+['T']
+    elif (k==4): l2=l2+['G']
+print(l2)
+#['C', 'C', 'T', 'T', 'C', 'A', 'C', 'T', 'A', 'T']
+
+
+#méthode random.choice
+import random
+n=10
+
+seq=[random.choice(['A', 'C', 'T','G']) for i in range(n)]
+
+print(seq)
+#['G', 'A', 'C', 'G', 'G', 'A', 'T', 'G', 'G', 'T']
+
+
+#8.8.7 Séquences aléatoires d’ADN avec argument
+import random
+print("entrer un nombre de bases")
+
+n=input()
+n=int(n)
+seq=[random.choice(['A', 'C', 'T','G']) for i in range(n)]
+
+print(seq)
+#['C', 'C', 'A', 'A', 'C']
+
+
+#8.8.8 Compteur de lignes
+#a revoir
+
+#vu sur google
+
+def _make_gen(reader):
+    b = reader(1024 * 1024)
+    while b:
+        yield b
+        b = reader(1024*1024)
+
+def rawpycount(filename):
+    f = open(filename, 'rb')
+    f_gen = _make_gen(f.raw.read)
+    return sum( buf.count(b'\n') for buf in f_gen )
+
+_make_gen('zoo.txt')
+rawpycount('zoo.txt')
+
+
+#test sur un fichier de 12,8m de lignes
+import time
+start = time.time()
+
+path='C:\\Users\\Francis\\R_new\\transparence santé\\data\\declaration_avantage_2021_10_26_04_00.csv'
+_make_gen(path)
+rawpycount(path)
+#12 827 723
+
+end = time.time()
+#elapsed = end - start
+
+elapsed2 = (end - start)
+print(f'Temps d\'exécution : {elapsed2:.2f} secondes')
+#Temps d'exécution : 10.18 secondes
+
+#peut être utile pour l'import d'un csv
+
+
+#8.8.9 Détermination du nombre pi par la méthode Monte Carlo (exercice +++)
+
+import math
+def distance_O(xa,xb):
+    return math.sqrt((xb)**2+(xa)**2)
+
+import random
+N=100
+n=0
+
+for i in range(N):
+    xa=random.uniform(-1,1)
+    xb=random.uniform(-1,1)
+    if distance_O(xa,xb)<1 : n=n+1
+
+
+estim=4*n/N
+
+print(f"L\'estimation de PI vaut {estim} avec {N} points")
+print(f"L'écart avec PI est {abs(math.pi-estim)}")
+
+#`L'estimation de PI vaut 3.04 avec 100 points
+#L'écart avec PI est 0.10159265358979308
+
+#L'estimation de PI vaut 3.068 avec 1000 points
+#L'écart avec PI est 0.07359265358979306
+
+#L'estimation de PI vaut 3.142368 avec 1 000 000 points
+#L'écart avec PI est 0.000775346410206712
+
+#erreur moyenne
+
+
+import random
+iter=20
+N=1000000
+n=0
+erreur=0
+
+for j in range(iter):
+    estim=0
+    n=0
+    for i in range(N):
+        xa=random.uniform(-1,1)
+        xb=random.uniform(-1,1)
+        if distance_O(xa,xb)<1 : n=n+1
+        estim=4*n/N
+    erreur=erreur+abs(math.pi-estim)
+#print(erreur/iter)
+
+print(f"L'écart moyen avec PI est {erreur/iter} sur {N} points répétés {iter} fois")
+
+#L'écart moyen avec PI est 0.1478407346410207 sur 100 points répétés 20 fois
+#L'écart moyen avec PI est 0.034677796076937904 sur 1000 points répétés 20 fois
+#L'écart moyen avec PI est 0.0014275307179586472 sur 1000000 points répétés 20 fois
+
+#9.8 Exercices
+
+#9.8.1 Carré et factorielle
+
+#Reprenez l’exemple précédent à l’aide du site Python Tutor 
+
+#définition d'une fonction carre()
+def carre (x ):
+    y=x**2
+    return y
+
+# programme principal
+z=5
+resultat = carre (z)
+print(resultat)
+
+
+##########################
+#analyse de sortie
+########################
+def calc_factorielle(n):
+    fact = 1
+    for i in range (2,n+1):
+        fact=fact*i
+    return fact
+
+# programme principal
+nb = 4
+factorielle_nb = calc_factorielle(nb)
+print (f"{nb}! = {factorielle_nb}")
+nb2=10
+print(f"{nb2}! = {calc_factorielle(nb2)}")
+
+#9.8.2 Puissance
+
+def calc_puissance(x,y):
+    return x**y
+
+for i in range(21):
+    print(f"2^{i} vaut {calc_puissance(2,i)}")
+
+
+#9.8.3 Pyramide
+
+
+def gen_pyramide(N) :
+    for i in range(N):
+        print((N-i+1)*" ",(2*i+1)*"*")
+
+
+reponse2 = input (" Entrez un nombre de lignes ( entier positif ): ")
+N =int(reponse2)
+
+gen_pyramide(N)
+
+#9.8.4 Nombres premiers
+
+import math
+def est_premier(N) :
+    if N==2 or N==3: return True
+    if N%2==0 or N<2: return False
+    for i in range(3, int(N**0.5)+1,2):
+        if N%i==0:
+            return False
+    return True
+
+est_premier(13)==False
+est_premier(14)  
+ 
+for i in range(2,101):
+    if est_premier(i)==True:
+        print(f"{i} est premier")
+    else:print(f"{i} n'est pas premier")
 
 
 
-                
-                  
+
+#algorithme optimisé trouvé sur google
+def isitPrime(k):
+    if k==2 or k==3: return True
+    if k%2==0 or k<2: return False
+    for i in range(3, int(k**0.5)+1, 2):
+        if k%i==0:
+            return False
+    return True
+print(isitPrime(11))
+
+#D'après le théorème des diviseurs premiers, si n n'est divisible par aucun 
+#des nombres premiers inférieur ou égaux à sa racine carrée, 
+#on peut affirmer qu'il est premier.
+
+#9.8.5 Séquence complémentaire
+#Créez une fonction seq_comp() qui prend comme argument une liste de bases et 
+#qui renvoie la séquence complémentaire d’une séquence d’ADN sous forme de liste.
+
+#programme principale
+
+
+def seq_comp(liste):
+    ADN_comp=[]
+    for acide in liste:
+        if acide=='A':
+            ADN_comp=ADN_comp+['T']
+        elif acide=="T":
+            ADN_comp=ADN_comp+['A']
+        elif acide=="C":
+            ADN_comp=ADN_comp+['G']
+        elif acide=="G":
+            ADN_comp=ADN_comp+['C']
+    return ADN_comp
+
+seq = ["A","T","C","G","A","T","C","G","A","T","C"]
+
+
+
+len(seq) #11
+len(seq_comp(seq)) #11
+
+
+#9.8.6 Distance 3D
+
+#Créez une fonction calc_distance_3D() qui calcule la distance euclidienne en trois dimensions entre deux atomes.
+#Testez votre fonction sur les 2 points A(0,0,0) et B(1,1,1). Trouvez-vous bien √3 ?
+import math
+
+def calc_distance_3D(x,y,z,x1,y1,z1):
+    return(math.sqrt((x-x1)**2+(y-y1)**2+(z-z1)**2))
+
+calc_distance_3D(0,0,0,1,1,1) #1.7320508075688772
+math.sqrt(3) #1.7320508075688772
+
+
+#9.8.7 Distribution et statistiques
+import statistics
+import random
+
+
+
+def gen_distrib(debut,fin,n):
+    seq_uni=[]
+    for i in range(n):
+        seq_uni=seq_uni+[random.uniform(debut,fin)]
+    return seq_uni
+
+gen_d=gen_distrib(1,10,500)
+gen_d
+
+#[9.778456311290176, 3.2794200902248942,5.8154705837209395,2.904364472226572,7.124627206253325]
+
+
+def calc_stat(liste):
+    min=liste[0]
+    max=liste[0]
+    moy=0
+    for i in range(len(liste)):
+       if (liste[i]<min):
+           min=liste[i]
+       if (liste[i]>max):
+           max=liste[i]
+    moy=sum(liste)/len(liste)
+    return min, max, moy
+
+
+calc_stat(gen_d)
+# calc_stat(gen_d)
+#(2.904364472226572, 9.778456311290176, 5.7804677327431815)
+
+#Dans le programme principal, générez 20 listes aléatoires de 100 floats compris entre 0 et 100 
+#et affichez le minimum (min()), le maximum (max()) et la moyenne pour chacune d’entre elles. 
+#La moyenne pourra être calculée avec les fonctions sum() et len().
+#Pour chacune des 20 listes, affichez les statistiques (min, max, et moyenne) 
+#avec deux chiffres après la virgule :
+
+
+for i in range(1,21,1):
+    gen_d2=gen_distrib(1,100,20)
+    calc_stat(gen_d2)
+    print(f" Liste {i} : min = {calc_stat(gen_d2)[0]:.2f} ; max = {calc_stat(gen_d2)[1]:.2f}; moyenne = {calc_stat(gen_d2)[2]:.2f}")
+
+# Liste 1 : min = 9.83 ; max = 99.12; moyenne = 53.71
+#Liste 2 : min = 5.27 ; max = 97.19; moyenne = 50.46
+#Liste 3 : min = 5.33 ; max = 87.82; moyenne = 44.55
+#Liste 4 : min = 2.93 ; max = 86.12; moyenne = 43.54
+
+#n=1000
+#Liste 1 : min = 18.45 ; max = 95.63; moyenne = 56.21
+#Liste 2 : min = 2.19 ; max = 76.45; moyenne = 38.97
+#Liste 3 : min = 3.79 ; max = 96.27; moyenne = 60.18
+#Liste 4 : min = 8.62 ; max = 99.01; moyenne = 59.79
+
+#quand n grandit Les écarts sur les statistiques entre les différentes 
+#listes ne semblent pas changer  (???)
+
+
+#9.8.8 Distance à l’origine (exercice +++)
+
+def calc_distance_2D(x,y,x1,y1):
+    return(math.sqrt((x-x1)**2+(y-y1)**2)
+
+def calc_dist2ori(list_x,list_y):
+    seq_dist2=[[]]  
+    for i in range(len(list_x)): #list_x à la même longueur que list_y
+        seq_dist2= seq_dist2+[[calc_distance_2D(list_x[i],0)],1]
+      
+
+import math    
+for i in range(100)
+    list_x=i/100
+    list_y=math.sin(i/100)
+
+calc_dist2ori(list_x,list_y)
