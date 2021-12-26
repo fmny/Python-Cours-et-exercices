@@ -18,7 +18,7 @@ Created on Tue Nov 23 15:12:57 2021
 
 
 #programme pris sur le web
-def repeat(word, m, n): 
+def repeat1(word, m, n): 
         
     if(m > len(word)): 
         m = len(word) 
@@ -34,14 +34,14 @@ def repeat(word, m, n):
 
 #exercice
 #répéter une chaîne 20 fois
-#penser à mettre un return sinon la fonction ne renvoi rien
+#penser à mettre un return sinon la fonction ne renvoit rien
 #donc le print est bon maiis le type est "none"
 
 #Générez une chaîne de caractères représentant un brin d’ADN poly-A 
 #(c’est-à-dire qui ne contient que des bases A) de 20
 #bases de longueur, sans taper littéralement toutes les bases.
 
-ma_chaine=repeat("A",1,20)
+ma_chaine=repeat1("A",1,20)
 ma_chaine=str(ma_chaine)
 len(ma_chaine)
 len("AAA")
@@ -292,7 +292,7 @@ pairs2
 
 for i in pairs2:
     if i <= max(pairs2)-2:
-       print(i*(i+2))
+        print(i*(i+2))
 
 
 #V5.4.7 Triangle
@@ -348,7 +348,13 @@ for i in range(N):
     
     
 #5.4.11 Parcours de matrice
-#je ne comprends pas
+
+print("Ligne  Colonne")
+n=3
+for i in range(1,n+1,1):
+    for j in range(1,n+1,1):
+        print(f"  {i}     {j}  ")
+
 
 #5.4.13 Sauts de puce (p40)
 import random
@@ -357,8 +363,8 @@ random.choice([-1,1])
 x=0
 marche=[]   #je veux sauvegarder ma marche aléatoire entière
 while(x<5):
-        x=x+random.choice([-1,1])
-        marche=marche+[x]
+    x=x+random.choice([-1,1])
+    marche=marche+[x]
 #print(x)
 print(marche)
 
@@ -373,11 +379,11 @@ print(n1,", ", n2, end=", ")
 
 
 for i in range(2, nterms):
-  suivant = n1 + n2
-  print(suivant, end=", ")
+    suivant = n1 + n2
+    print(suivant, end=",")
  
-  n1 = n2
-  n2 = suivant
+    n1 = n2
+    n2 = suivant
 
 # Programme pour générer la suite de Fibonacci en utilisant la récursivité
 def fibonacci(n):
@@ -388,7 +394,7 @@ def fibonacci(n):
 n = int(input("Entrez le nombre de termes:"))
 print("Suite de Fibonacci en utilisant la recursion :")
 for i in range(2,n):
-       print(fibonacci(i)," ",{fibonacci(i)/fibonacci(i-1)})
+       print(fibonacci(i)," ",fibonacci(i)/fibonacci(i-1))
        
 #le rapport u(n+1)/u(n) tend vers 1.618034
 
@@ -397,7 +403,6 @@ for i in range(2,n):
 #6.7 Exercices
 
 #6.7.1 Jours de la semaine
-
 
 
 #En utilisant une boucle, écrivez chaque jour de la semaine ainsi que les messages suivants :
@@ -409,13 +414,15 @@ semaine=["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"]
 
 for jour in semaine:
     if jour=="lundi"or jour== "mardi" or jour=="mercredi" or jour=="jeudi":
-        print("Au travail s’il s’agit du lundi au jeudi")
+        print("Au travail il s’agit du lundi au jeudi")
     elif jour=="vendredi":
         print("Chouette c'est vendredi s’il s’agit du vendredi")
     elif jour=="samedi" or jour=="dimanche": 
         print("Repos ce week-end s’il s’agit du samedi ou du dimanche")
 
+
 #6.7.2 Séquence complémentaire d’un brin d’ADN
+
 #La liste ci-dessous représente la séquence d’un brin d’ADN :
 #["A", "C", "G", "T", "T", "A", "G", "C", "T", "A", "A", "C", "G"]
 #Créez un script qui transforme cette séquence en sa séquence complémentaire.
@@ -449,6 +456,7 @@ for i in range(len(nb)-1):
         if nb[i]<=nb[j]:x=nb[i]
 print(x)
 #1
+
 
 #6.7.4 Fréquence des acides aminés
 
@@ -488,6 +496,7 @@ elif moy>14: print("la mention est bien")
 
 
 #6.7.6 Nombres pairs
+
 #Construisez une boucle qui parcourt les nombres de 0 à 20 et qui affiche les nombres 
 #pairs inférieurs ou égaux à 10 d’une part, et les nombres impairs strictement 
 #supérieurs à 10 d’autre part
@@ -495,25 +504,14 @@ elif moy>14: print("la mention est bien")
 #division entière entre deux nombres
 
 
-
-
 for i in range(20):
     if (i%2==0) and (i<=10): print(i)
     if (i%2==1) and (i>10): print(i)
 
-#0
-#2
-#4
-#6
-#8
-#10
-#11
-#13
-#15
-#17
-#19
+
 
 #6.7.7 Conjecture de Syracuse (exercice +++)
+
 #La conjecture de Syracuse est une conjecture mathématique qui reste improuvée à ce jour 
 #et qui est définie de la manière suivante.
 #Soit un entier positif n. Si n est pair, alors le diviser par 2. Si il est impair, 
@@ -609,7 +607,7 @@ print(premier)
 #premier. Attention, pour cette méthode, il faudra initialiser la liste de nombres 
 #premiers avec le premier nombre premier (donc 2 !).
 
-#a finir
+#méthode 2
 n=100
 premier2=[1]
 
@@ -618,10 +616,13 @@ for i in range(2,n):
     for j in premier2 :
         if (i%j==0) : compteur=compteur+1
     if (compteur==1) : premier2=premier2+[i]
-print(premier2)
-#Erésultat
-#[1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]             
- 
+print(premier2[1:len(premier2)])
+#Résultat
+#[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97][1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]             
+
+
+
+#6.7.10 Recherche d’un nombre par dichotomie (exercice +++)
 
 #Pour vous guider, voici ce que donnerait le programme avec la conversation précédente :
 print(" Pensez à un nombre entre 1 et 100")
@@ -635,29 +636,34 @@ signe=input()
 
 
 while (signe!="="):
-    if (signe=="+") and (nb<97):
-        nb=int(nb+nb2/2)
-        print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {nb} [+/-/=] ?")
-    elif (signe=="-") and(nb>3): 
-        nb=int(nb-nb2/2)
-        print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {nb} [+/-/=] ?")
-    elif (nb>96):
+    if (signe=="+") and (nb<99):
+        nb=nb+nb2/2
+        print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {int(nb)} [+/-/=] ?")
+    elif (signe=="-") and (nb>2): 
+        nb=nb-nb2/2
+        print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {int(nb)} [+/-/=] ?")
+    elif (nb>98):
         nb=nb+1
         print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {nb} [+/-/=] ?")
-    elif (nb<4) :
+    elif (nb<3) :
         nb=nb-1
         print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {nb} [+/-/=] ?")
-    print(nb)
+    elif  (signe!='=') or (signe!='+') or (signe!='-'):
+        print("il faut entrer au choix [+/-/=]" )
+        break
+    print(int(nb))
     nb2=nb2/2
     signe=input()
 
-         
-#ne marchait pas pour n=1,2,3 et 98,99,100 (donc elif peu élégants)
-#vérifier les autres valeurs
+
+             
+#peu élégants
 #Il y a sûrement plus direct comme méthode
+
 
 #Attention: ne surtout pas mettre de and dans les instructions après if 
 #(seulement dans la condition if)
+
 
 #test
 n=int(100)
@@ -666,14 +672,16 @@ nb2=int(0)
 print(f"Est-ce votre nombre est plus grand, plus petit ou égal à {n/2} [+/-/=] ?")
 signe=input()
 
+
 #test
 while (signe!="="):
     if (signe=="+"): 
         signe=input()
     elif (signe=="-"): 
         signe=input()
- 
-  ##################################
+
+  
+ ##################################
 
 #7.7 Exercices
 
@@ -1183,17 +1191,294 @@ for i in range(1,21,1):
 #9.8.8 Distance à l’origine (exercice +++)
 
 def calc_distance_2D(x,y,x1,y1):
-    return(math.sqrt((x-x1)**2+(y-y1)**2)
+    return(math.sqrt((x-x1)**2+(y-y1)**2))
 
 def calc_dist2ori(list_x,list_y):
-    seq_dist2=[[]]  
+    seq_dist2=[]  
     for i in range(len(list_x)): #list_x à la même longueur que list_y
-        seq_dist2= seq_dist2+[[calc_distance_2D(list_x[i],0)],1]
-      
+       seq_dist2= seq_dist2+[calc_distance_2D(list_x[i],list_y[i],0,0)]
+    return seq_dist2
 
-import math    
-for i in range(100)
-    list_x=i/100
-    list_y=math.sin(i/100)
+import math
+list_x=[]
+list_y=[]   
+for i in range(100):
+    list_x=list_x+[i/100]
+    list_y=list_y+[math.sin(i/100)]
 
 calc_dist2ori(list_x,list_y)
+
+
+with open ("sin2ori.dat" , "w") as filout :
+    for i in calc_dist2ori(list_x,list_y) :
+        filout.write(str(i))
+
+
+import os
+os.chdir('C:\\Users\\Francis\\R_new\\Python Scripts\\Cours Paris 7\\data')
+
+
+#problème avec les types de variables (à revoir)
+# création d' une image pour la visualisation du résultat
+import matplotlib . pyplot as plt
+
+x = []
+y = []
+
+
+with open ('sin2ori.dat',"r") as f_in :
+    for line in f_in :
+        coords = line.split ()
+        x.append ( float ( coords [0]))
+        y.append ( float ( coords [1]))
+plt.figure ( figsize =(8 ,8))
+plt.plot (x , y)
+plt.xlabel ("x")
+plt.ylabel ("Distance de sin(x)à l'origine ")
+plt.savefig ("sin2ori.png")
+
+###################################
+#Chapitre 10
+###################################
+
+#10.8 Exercices
+
+#10.8.1 Parcours d’une liste de chaînes de caractères
+#Soit la liste ['girafe', 'tigre', 'singe', 'souris']. Avec une boucle, 
+#affichez chaque élément ainsi que sa taille (nombre de caractères).
+
+seq=['girafe', 'tigre', 'singe', 'souris']
+
+for ani in seq:
+    print(f"{ani} possède {len(ani)} caractères")
+
+
+#10.8.2 Lecture d’une séquence à partir d’un fichier FASTA
+
+#j'essaie de le faire sans tricher (donc pas de pandas :-(
+
+#import os
+#os.chdir('C:\\Users\\Francis\\R_new\\Python Scripts\\Cours Paris 7\\data\\')
+
+
+path_fasta='C:\\Users\\Francis\\R_new\\Python Scripts\\Cours Paris 7\\data\\'
+
+def lit_fasta(fasta):
+    with open (fasta, "r") as filin :
+        fasta_seq=filin.read()
+        #fasta_seq.find("\n") #curieuse manière de retirer la 1ere ligne
+        fasta_seq=fasta_seq[fasta_seq.find("\n"):len(fasta_seq)] 
+        fasta_seq=fasta_seq.replace("\n","")
+        fasta_name=fasta.split("\\")[len(fasta.split("\\"))-1]
+        #print(fasta_seq)
+        print(f"Le nom du fichier est {fasta_name}")
+        print(f"la longueur de la sequence est {len(fasta_seq)}")
+    if (len(fasta_seq)%3==0):print(f"le nombre de base est un multiple de 3 nucléotides\n\
+le nombre de codons est {len(fasta_seq)/3:.0f} ")
+    print(f"Les dix premières bases sont {fasta_seq[0:9]}")
+    print(f"Les dix dernières bases sont {fasta_seq[-9:-1]+fasta_seq[0]}")
+    #return fasta_seq
+              
+
+lit_fasta(path_fasta+"UBI4_SCerevisiae.fasta")
+
+##peut-être qu'on peut faire plus simple ?
+
+#test
+n=10
+seq=[]
+for i in range(10):
+    seq=seq+[i]
+
+seq[0:-3]
+#[0, 1, 2, 3, 4, 5, 6]
+
+#5 derniers en 2 étapes
+#inverser la chaîne
+seq2=seq[::-1]
+[9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+
+#3 derniers
+seq2[0:3:]
+#[9, 8, 7] #attention, ici la châine est à l'envers
+
+
+
+#Utilisation de la fassta file pour simplifier :-)
+
+fic_fasta=path_fasta+"UBI4_SCerevisiae.fasta"
+
+prot_dict = {}
+with open (path_fasta+"UBI4_SCerevisiae.fasta", "r") as fasta_file :
+        prot_id = ""
+        for line in fasta_file :
+            if line . startswith (">"):
+                prot_id = line [1:]. split ()[0]
+                prot_dict [ prot_id ] = ""
+            else :
+                prot_dict [ prot_id ] += line . strip ()
+        for id in prot_dict :
+            print ( id )
+            print (prot_dict [ id ][:30])
+            
+#NC_001144.5:c65207-64062
+#ATGCAGATTTTCGTCAAGACTTTGACCGGT
+#En effet c'est plus simple (voir annexe A: utilisation fichier fasta)
+
+
+########################
+#10.8.3 Fréquence des bases dans une séquence d’ADN
+
+#Soit la séquence d’ADN ATATACGGATCGGCTGTTGCCTGCGTAGTAGCGT. 
+#On souhaite calculer la fréquence de chaque base
+#A, T, C et G dans cette séquence et afficher le résultat à l’écran.
+#Créez pour cela une fonction calc_composition() à laquelle vous passez 
+#en argument votre séquence d’ADN sous
+#forme d’une chaîne de caractères et qui renvoie une liste de quatre floats 
+#indiquant respectivement la fréquence en bases A, T,G et C.
+
+seq1='ATATACGGATCGGCTGTTGCCTGCGTAGTAGCGT'
+
+def calc_composition(seq):
+    a=0;g=0;t=0;c=0
+    for car in seq:
+            if car=='A':a=a+1
+            elif car=='G':g=g+1
+            elif car=='T':t=t+1
+            elif car=='C':c=c+1
+    return print(f"la fréquence de A est {a/len(seq)*100:.2f}%"),\
+        print(f"la fréquence de G est {g/len(seq)*100:.2f}%"),\
+        print(f"la fréquence de T est {t/len(seq)*100:.2f}%"),\
+        print(f"la fréquence de C est {c/len(seq)*100:.2f}%")
+        #print(f"{(a+c+t+g)/len(seq)}") #vérification
+
+calc_composition(seq1)
+#la fréquence de A est 17.65%
+#la fréquence de G est 32.35%
+#la fréquence de T est 29.41%
+#la fréquence de C est 20.59%
+#Out[14]: (None, None, None, None)
+#je ne sais pas pourquoi il y a 4 none
+
+#10.8.4 Conversion des acides aminés du code à trois lettres au code à une lettre
+
+seq2='ALA GLY GLU ARG TRP TYR SER GLY ALA TRP'
+
+def convert_3_lettres_1_lettre(seq):
+        for chaine in seq.split():
+            print(chaine[0])
+
+convert_3_lettres_1_lettre(seq2)
+#'A' : a revoir (et comprendre)
+
+seq2.split()
+    
+
+def convert_3_lettres_1_lettre(seq):
+    seq_convert=[]
+    for chaine in seq.split():
+        seq_convert=seq_convert+[chaine[0]]
+    return seq_convert
+
+convert_3_lettres_1_lettre(seq2)
+#['A', 'G', 'G', 'A', 'T', 'T', 'S', 'G', 'A', 'T']
+
+#10.8.5 Distance de Hamming
+
+#AGWPSGGASAGLAIL et IGWPSAGASAGLWIL
+seq_h1='AGWPSGGASAGLAIL'
+seq_h2='IGWPSAGASAGLWIL'
+
+def  dist_hamming(seq1,seq2):
+    compteur_h=0
+    for i in range(len(seq1)):
+        if(seq1[i]!=seq2[i]): compteur_h=compteur_h+1
+    return compteur_h
+
+
+dist_hamming(seq_h1,seq_h2)
+#3
+seq_h3='ATTCATACGTTACGATT'
+seq_h4='ATACTTACGTAACCATT'
+
+dist_hamming(seq_h3,seq_h4)
+#4
+
+#10.8.6 Palindrome
+
+def inverse_chaine(chaine):
+    chaine2=''
+    chaine.lower()
+    chaine.replace(" ","")
+    for i in range(len(chaine)): chaine2=chaine2+chaine[len(chaine)-i-1]
+    return chaine2
+
+   
+inverse_chaine('azerty') #test
+
+def test_palindrome(chaine):
+    chaine2=chaine
+    chaine2.lower()
+    chaine2=chaine2.replace(" ","")
+    if (chaine2==inverse_chaine(chaine2)):print(f"{chaine} est un palindrome")
+    else: print(f"{chaine} n'est un palindrome")
+
+
+pal1='radar'
+pal2='never odd or even'
+pal3='karine alla en Iran'
+pal4='un roc si biscornu'
+pal5='elu par cette crapule'
+
+#Ta fesse n'a le désir irisé de l'ânesse, fat
+#pal6='Ta fesse n'a le désir irisé de l'ânesse, fat' #modifier le programme 
+#pour supprimer les accents et les '
+
+test_palindrome(pal1)
+test_palindrome(pal2)
+test_palindrome(pal3)
+test_palindrome(pal4)
+test_palindrome(pal5)
+
+#10.8.7 Mot composable
+#a revoir, ne marche pas pour l'instant
+def test_composable(chaine1,chaine2):
+    compteur=0
+    for i in range(len(chaine1)-1):
+       if chaine2.find(chaine1[i])>0:
+           print(chaine2)
+           chaine2_list=list(chaine2)
+           chaine2_list.pop(i)
+           chaine2="".join(chaine2_list)
+           #chaine2=chaine2[0:chaine2.find(chaine1[i-1])]+chaine2[chaine2.find(chaine1[i+1]):len(chaine2)]
+           compteur=compteur+1
+           print(compteur)
+           print(chaine2)
+       elif (compteur==len(chaine1)-1):print("décomposable")
+       else: print("non décomposable")
+       
+       
+       
+ch1='python'
+#ch2='aophrtkny'
+ch2='python'
+
+test_composable(ch1,ch2)
+
+#python aophrtkny
+#python aeiouyhpq
+#coucou uocuoceokzezh
+#fonction nhwfnitvkloco
+
+#Trouvé sur internet
+sentence = "Hello, how are you ?"
+#Pour supprimer le nième caractère (par exemple 4), une solution consiste à 
+#convertir la chaîne en liste :
+sentence_list = list(sentence)
+#supprimer l'élément correspondant à l'index = 4:
+sentence_list.pop(4)
+#et reconvertir en chaîne
+sentence = "".join(sentence_list)
+print(sentence)
+
+
